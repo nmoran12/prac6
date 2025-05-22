@@ -1,0 +1,42 @@
+// Calculates a = x*y
+// a is a local variable
+// x & y are static variables
+
+// Put your code here.
+function Mult.multiply 1
+
+// this is based on 'repeated addition' implementation of multiplication
+
+// setting a = 0, this is our 'running total' while we add up
+push constant 0
+pop local 0
+
+label LOOP
+// while y != 0, we loop 
+push static 1 // y
+if-goto mainBit // if-goto behaviour checks if a value != 0, so we are checking if y != 0 and then going to the main processing part
+goto END // if y = 0, then we go to the END since we can just return a = 0
+
+label mainBit
+// a = a + x
+push local 0 // a
+push static 0 // x
+add
+pop local 0
+
+// y = y - 1
+push static 1 // y
+push constant 1
+sub
+pop static 1 // popping y
+
+// to loop around again
+goto LOOP
+
+label END
+// return a
+push local 0
+return
+
+label END
+goto END
